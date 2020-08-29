@@ -1,0 +1,35 @@
+name: ChatPlugin
+version: 0.1.0
+description: A very simple and basic Minecraft chat plugin
+author: Harrison
+
+main: me.harriiison.chat.ChatMain
+depend: [Vault]
+
+commands:
+  channel:
+    description: Display the channel help for the chat commmand.
+    aliases: [ch]
+  global:
+    description: Chat in the global chat channel.
+    aliases: [g]
+    permission: chat.global
+  staff:
+    description: Chat in the staff chat channel.
+    aliases: [sc]
+    permission: chat.staff
+  admin:
+    description: Chat in the admin chat channel.
+    aliases: [a]
+    permission: chat.admin
+
+permissions:
+  chat.global:
+    description: Give access to speak in the global chat
+    default: true
+  chat.staff:
+    description: Give access to speak in the staff chat
+    default: op
+  chat.admin:
+    description: Give access to speak in the admin chat
+    default: op
