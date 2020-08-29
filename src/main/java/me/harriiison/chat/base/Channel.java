@@ -1,7 +1,5 @@
 package me.harriiison.chat.base;
 
-import org.bukkit.permissions.Permission;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;

@@ -61,8 +61,6 @@ public class ChannelManager {
         }
         channel.removeActivePlayer(player.getUniqueId());
         player.sendMessage(ChatColor.RED + "You left " + ChatColor.GOLD + channel.getName());
-
-        // TODO if player is in no channels add them back to global
     }
 
     // Default channel that every message from the player is sent to

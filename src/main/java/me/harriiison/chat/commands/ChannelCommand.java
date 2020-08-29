@@ -17,7 +17,7 @@ public class ChannelCommand implements CommandExecutor {
     private ChannelManager channelManager;
     public ChannelCommand(ChatMain instance) {
         this.plugin = instance;
-        this.channelManager = instance.getChannelManager();
+        this.channelManager = plugin.getChannelManager();
     }
 
 
@@ -95,10 +95,6 @@ public class ChannelCommand implements CommandExecutor {
                 return true;
             } else {
                 // player did /ch [channel name/alias] to focus
-                if (channel == null) {
-                    player.sendMessage(ChatColor.RED + "The specified channel does not exist!");
-                    return sendHelpMessage(player);
-                }
                if (player.hasPermission(channel.getPermission()))
                    channelManager.setFocussedChannel(player, channel.getName());
                else
