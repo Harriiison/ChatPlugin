@@ -3,7 +3,7 @@ version: 0.1.0
 description: A very simple and basic Minecraft chat plugin
 author: Harrison
 
-main: me.harriiison.chat.ChatMain
+main: me.harriiison.chat.ChatPlugin
 depend: [Vault]
 
 commands:

@@ -10,14 +10,14 @@ public class Channel {
     private String alias;
     private String format;
     private String permission;
-    private List<UUID> focussedPlayers = new ArrayList<>();
+    private List<UUID> focusedPlayers = new ArrayList<>();
     private List<UUID> activePlayers = new ArrayList<>();
 
-    public Channel(String channelName, String channelAlias, String channelFormat, String channelPermission) {
-        this.name = channelName;
-        this.alias = channelAlias;
-        this.format = channelFormat;
-        this.permission = channelPermission;
+    public Channel(String name, String alias, String format, String permission) {
+        this.name = name;
+        this.alias = alias;
+        this.format = format;
+        this.permission = permission;
     }
 
     public String getName() {
@@ -48,22 +48,22 @@ public class Channel {
         activePlayers.remove(player);
     }
 
-    public List<UUID> getFocussedPlayers() {
-        return focussedPlayers;
+    public List<UUID> getFocusedPlayers() {
+        return focusedPlayers;
     }
 
-    public void addFocussedPlayer(UUID player) {
-        focussedPlayers.add(player);
+    public void addFocusedPlayer(UUID player) {
+        focusedPlayers.add(player);
         if (!activePlayers.contains(player))
             addActivePlayer(player);
     }
 
-    public void removeFocussedPlayer(UUID player) {
-        focussedPlayers.remove(player);
+    public void removeFocusedPlayer(UUID player) {
+        focusedPlayers.remove(player);
     }
 
     public void emptyChannel() {
         activePlayers.clear();
-        focussedPlayers.clear();
+        focusedPlayers.clear();
     }
 }

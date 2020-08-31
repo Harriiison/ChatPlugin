@@ -1,6 +1,6 @@
 package me.harriiison.chat.events;
 
-import me.harriiison.chat.ChatMain;
+import me.harriiison.chat.ChatPlugin;
 import me.harriiison.chat.base.Channel;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -9,10 +9,10 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
-public class ChatMessage implements Listener {
+public class ChatListener implements Listener {
 
-    private ChatMain plugin;
-    public ChatMessage(ChatMain instance) {
+    private ChatPlugin plugin;
+    public ChatListener(ChatPlugin instance) {
         this.plugin = instance;
     }
 

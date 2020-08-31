@@ -21,10 +21,7 @@ public class ChannelManager {
 
     public Channel getChannelByName(String channelName) {
         for (Channel channel : channels) {
-            if (channel.getName().equalsIgnoreCase(channelName)) {
-                return channel;
-            }
-            else if (channel.getAlias().equalsIgnoreCase(channelName)) {
+            if (channel.getName().equalsIgnoreCase(channelName) || channel.getAlias().equalsIgnoreCase(channelName)) {
                 return channel;
             }
         }
@@ -41,11 +38,13 @@ public class ChannelManager {
             player.sendMessage(ChatColor.RED + "The specified channel does not exist!");
             return;
         }
+
         if (channelHasPlayer(channel, player.getUniqueId())) {
             player.sendMessage(ChatColor.RED + "You are already in the channel " + ChatColor.GOLD + channel.getName());
             player.sendMessage(ChatColor.RED + "Use " + ChatColor.GOLD + "/" + channel.getAlias() + " [message]" + ChatColor.RED + " to send a message");
             return;
         }
+
         channel.addActivePlayer(player.getUniqueId());
         player.sendMessage(ChatColor.GREEN + "You joined " + ChatColor.GOLD + channel.getName());
         player.sendMessage("");
@@ -60,6 +59,15 @@ public class ChannelManager {
             return;
         }
         channel.removeActivePlayer(player.getUniqueId());
+
+        if (getFocussedChannel(player.getUniqueId()) == channel) {
+            try {
+                setFocussedChannel(player, getActivePlayerChannels(player.getUniqueId()).get(0).getName());
+            } catch (Exception ignored) {
+                // Ignore empty array, this is fixed later on
+            }
+        }
+
         player.sendMessage(ChatColor.RED + "You left " + ChatColor.GOLD + channel.getName());
     }
 
@@ -70,23 +78,24 @@ public class ChannelManager {
             player.sendMessage(ChatColor.RED + "The channel " + ChatColor.GOLD + channelName + ChatColor.RED + " does not exist!");
             return;
         }
+
         Channel focussedChannel = getFocussedChannel(player.getUniqueId());
         if (focussedChannel == channel) {
             player.sendMessage(ChatColor.RED + "You are already focussed to the channel " + ChatColor.GOLD + focussedChannel.getName());
             return;
         }
-        channel.addFocussedPlayer(player.getUniqueId());
+        channel.addFocusedPlayer(player.getUniqueId());
 
         // remove focussed player from other channel
         if (focussedChannel != null)
-            focussedChannel.removeFocussedPlayer(player.getUniqueId());
+            focussedChannel.removeFocusedPlayer(player.getUniqueId());
 
         player.sendMessage(ChatColor.GREEN + "You are now focussed on the channel " + ChatColor.GOLD + channel.getName());
     }
 
     public Channel getFocussedChannel(UUID player) {
         for (Channel ch : channels) {
-            if (ch.getFocussedPlayers().contains(player)) {
+            if (ch.getFocusedPlayers().contains(player)) {
                 return ch;
             }
         }
